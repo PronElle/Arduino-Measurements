@@ -21,7 +21,7 @@ Nevertheless, a single time measurement depends upon the bias voltage (which dep
 
 ![](https://latex.codecogs.com/svg.latex?C_x=\frac{\tau}{R_s}=\frac{T}{R_slog(V_0/V_1)})
 
-as now it only depends upon the distance T between the time instants (fixed) and ![](https://latex.codecogs.com/svg.latex?V_0/V1).
+as now it only depends upon the distance T between the time instants (fixed) and ![](https://latex.codecogs.com/svg.latex?V_0/V_1).
 
 
 
