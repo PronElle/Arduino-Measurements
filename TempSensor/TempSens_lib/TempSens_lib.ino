@@ -31,40 +31,11 @@ void loop(void)
  Serial.println("DONE"); 
 /********************************************************************/
  Serial.print("Temperature is: "); 
- Serial.println(sensors.getTempCByIndex(0)); // Why "byIndex"?  
+ Serial.println(sensors.getTempCByIndex(0)); 
+ 
    // You can have more than one DS18B20 on the same bus.  
    // 0 refers to the first IC on the wire 
    delay(5); 
 
   xloop();
 } 
-
-
-void xloop() {
-  // put your main code here, to run repeatedly:
-
-  int X = analogRead(A2);
-  float V = ((float) X) / 1024.0 * 5.0;
-
-  Serial.println("X = " + String(X));
-
- // Serial.println("V = "+String(V,3)+" V");
-
-  float T = V / 10e-3 - 273.15 + 3.0;
-  
-  Serial.println("analog T = "+String(T,2)+" °C");
-
-  int Y = analogRead(A1);
-  //Serial.println("dY = " + String(2.0/((float)Y)));
-  Serial.println(Y);
-
-  
-  float V_LM = ((float) Y) / 1024.0 * 5.0;
-
-  Serial.println("V_LM = "+String(V_LM,3)+" V");
-  
-  Serial.println("V_REF= " + String(4.1/((float)Y) * 1024.0)); 
-   
-  delay(500);
-
-}

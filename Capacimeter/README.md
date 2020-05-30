@@ -2,12 +2,17 @@
 
 ## Circuit
 
-The circuit scheme is shown below
+For all the three versions of this project, the circuit scheme is shown below
 <p align="center">
   <img src="scheme.png" width="500" title="hover text">
 </p>
 
-* **Capacitor range for a good accuracy** : 1 nF - 1 &mu;F
+* **Capacitor range for a good accuracy** : 
+
+  > 1 nF - 1 &mu;F  
+  >
+  > 1 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
+
 * **Resistor value** : 100 k&Omega;   
 
 ​	
@@ -31,19 +36,17 @@ Since the time between the two measurements needs to be accurate, we can't just 
 
 * OCR1A, OCR1B : to set A/D conversion thresholds
 
-* TCCR1A, TCCR1B, TCCR1C : to set prescaler, force commutation, toggle Pin
+* TCCR1A, TCCR1B, TCCR1C : to set Prescaler, force commutation, toggle Pin
 
 * TCNT1 : to set start value
 
-* TIFR1, TIMSK1 to enable interrupts
+* TIFR1, TIMSK1: to enable interrupts
 
 * ADCSRA : to enable hardware triggers and set Prescaler 
 
-* ADCSRB : sto start timer 1
+* ADCSRB : to start timer 1
 
   
-
-
 
 
 

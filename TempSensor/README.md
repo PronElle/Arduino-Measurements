@@ -11,3 +11,10 @@ The circuit scheme is shown below
 * **resistor value** : 4.7 k&Omega;
 * **temperature sensor** : DS18B20
 
+## Code
+
+Two available versions of this project : 
+
+- high level solution using Arduino libraries (useless for teaching purposes) 
+
+- registers level solution, i.e. directly manipulating your Arduino microcontroller 
