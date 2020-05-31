@@ -48,13 +48,25 @@ Since the time between the two measurements needs to be accurate, we can't just 
 
 ## Advanced Version
 
-This advanced version employs both Arduino and LabView (and the knowledge of the Dithering in the probabilist method). 
+This advanced version employs both Arduino and LabView (and the knowledge of the Dithering in the probabilist model). 
 
-The Arduino program only requires two slight fixes to maximize the sampling frequency  keeping the maximum resolution (![](https://latex.codecogs.com/svg.latex?f_{AD}) < 200 kHz) as well. 
+### Arduino Program 
+
+The Arduino program only requires two slight fixes to maximize the sampling frequency  keeping the maximum resolution (![](https://latex.codecogs.com/svg.latex?f_{AD}) < 200 kHz) as well in order to acquire many more points of the discharge curve to process them via LabView :
+
+* threshold A to toggle the charge/discharge pin
+
+* threshold B to sample 
+
+We only keep 1 out 2 samples and increase threshold B every two samples.
+
+### LabView 
 
 To efficiently employ dithering, the noise network (50 Hz) must be unrelated with respect to the sampling period. Hence T must be a prime multiple of the system clock, e.g. 21013.
 
+To reduce the offset error, we can employ an exponential fitting .
 
-
-
+<p align="center">
+  <img src="labview.jpg" width="1000" title="hover text">
+</p>
 
