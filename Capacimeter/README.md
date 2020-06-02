@@ -4,18 +4,19 @@
 
 For all the three versions of this project, the circuit scheme is shown below
 <p align="center">
-  <img src="scheme.png" width="500" title="hover text">
+  <img src="scheme.png" width="500" title="circuit scheme">
 </p>
+
 
 * **Capacitor range for a good accuracy** : 
 
-  > 1 nF - 1 &mu;F  
+  > text1 nF - 1 &mu;F  
   >
   > 1 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
 
 * **Resistor value** : 100 k&Omega;   
 
-​	
+​	**NOTICE** : do not forget that both the resistor and the capacitor have their own tolerance which will definitely affect the accuracy of your measurement. Thereby, you should use a 1% resistor for a better result. In addition, keep in mind that you won't get the nominal value of your capacitor if you're not using a precise one, e.g. the "real value"  for a 20% 10 nF capacitor is in the range  8 - 12 nF. Do not expect to read the exact nominal value if your component has a huge tolerance.  
 
 ## Basic Version
 
@@ -64,9 +65,11 @@ We only keep 1 out 2 samples and increase threshold B every two samples.
 
 To efficiently employ dithering, the noise network (50 Hz) must be unrelated with respect to the sampling period. Hence T must be a prime multiple of the system clock, e.g. 21013.
 
-To reduce the offset error, we can employ an exponential fitting .
+To reduce the offset error, we can employ an exponential fitting . Here's the front panel and the labview G language program.
 
 <p align="center">
-  <img src="labview.jpg" width="1000" title="hover text">
+  <img src="frontpanel.jpg" width="700" title="front panel">
 </p>
-
+<p align="center">
+  <img src="labview.jpg" width="900" title="LabView diagram">
+</p>
