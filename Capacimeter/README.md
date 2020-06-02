@@ -10,7 +10,7 @@ For all the three versions of this project, the circuit scheme is shown below
 
 * **Capacitor range for a good accuracy** : 
 
-  > text1 nF - 1 &mu;F  
+  > 1 nF - 1 &mu;F  
   >
   > 1 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
 
