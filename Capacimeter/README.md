@@ -12,7 +12,7 @@ For all the three versions of this project, the circuit scheme is shown below
 
   > 1 nF - 1 &mu;F  
   >
-  > 1 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
+  > 10 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
 
 * **Resistor value** : 100 k&Omega;   
 
@@ -68,8 +68,9 @@ To efficiently employ dithering, the noise network (50 Hz) must be unrelated wit
 To reduce the offset error, we can employ an exponential fitting . Here's the front panel and the labview G language program.
 
 <p align="center">
-  <img src="frontpanel.jpg" width="700" title="front panel">
+  <img src="frontpanel.jpg" width="900" title="front panel">
 </p>
+
 <p align="center">
   <img src="labview.jpg" width="900" title="LabView diagram">
 </p>

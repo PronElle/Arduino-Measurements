@@ -144,10 +144,11 @@ void loop() {
   //  samples acquisition loop
   while(1) 
   {
-    TAB = 0; // Azzera il tempo TAB desiderato
-    signed long NextB; // Variabile di supporto
-    
-    for(int r = 0; r < NPOINTS; r++) // Ciclo di acquisizione di NPOINTS punti
+    TAB = 0; 
+    signed long NextB; 
+
+    // NPOINTS points acquisition loop
+    for(int r = 0; r < NPOINTS; r++) 
     {   
         // evaluating real threshold B
         NextB = (signed long) TAB - 255; 
@@ -162,12 +163,12 @@ void loop() {
         wait_IF_ADC();
         clr_IF_ADC();
 
-        Serial.print(ADC); // Invia il campione al computer
-        Serial.print(" "); // Invia uno spazio separatore al computer
+        Serial.print(ADC); // sending sample to labview
+        Serial.print(" "); // sending tab to labview
 
         // waiting for next samples
         wait_IF_ADC();
-        TAB += DT; // Incrementa il tempo TAB desiderato di DT
+        TAB += DT; 
       }
     Serial.println(""); // Termina la linea di testo con campioni
   }
