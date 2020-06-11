@@ -12,7 +12,7 @@ For all the three versions of this project, the circuit scheme is shown below
 
   > 1 nF - 1 &mu;F  
   >
-  > 10 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
+  > 1 pF - 1 &mu;F ("advanced" version, which **requires LabView**) 
 
 * **Resistor value** : 100 k&Omega;   
 
@@ -26,7 +26,7 @@ The basic idea is to measure the time constant ![](https://latex.codecogs.com/sv
 
 ​														 ![](https://latex.codecogs.com/svg.latex?C_x=\frac{\tau}{R_s})
 
-Nevertheless, a single time measurement depends upon the bias voltage (which depends strongly on your laptop!) and the discharge time. It clearly depends on Rs as well. Hence, measuring two time instants is a much better idea
+Nevertheless, a single time measurement depends upon the bias voltage (which depends strongly on your laptop!) and the discharge time. It clearly depends on ![](https://latex.codecogs.com/svg.latex?R_s) as well. Hence, measuring two time instants is a much better idea
 
 ![](https://latex.codecogs.com/svg.latex?C_x=\frac{\tau}{R_s}=\frac{T}{R_slog(V_0/V_1)})
 
@@ -65,12 +65,19 @@ We only keep 1 out 2 samples and increase threshold B every two samples.
 
 To efficiently employ dithering, the noise network (50 Hz) must be unrelated with respect to the sampling period. Hence T must be a prime multiple of the system clock, e.g. 21013.
 
-To reduce the offset error, we can employ an exponential fitting . Here's the front panel and the labview G language program.
+To reduce the offset error, we can employ an exponential fitting . Here's the front panel and the LabView G language program.
 
 <p align="center">
-  <img src="frontpanel.jpg" width="900" title="front panel">
+  <img src="frontpanel.png" width="900" title="front panel">
+</p>
+<p align="center">
+  <img src="labview.png" width="900" title="LabView diagram">
 </p>
 
-<p align="center">
-  <img src="labview.jpg" width="900" title="LabView diagram">
-</p>
+
+
+### Calibration
+
+For a better accuracy, you should calibrate your system the very first time: the measured capacitance if you remove the capacitor stays in the 30 pF ballpark. The reason why you don't measure 0 is the S&H capacitor inside Arduino. In other words, you're measuring the parallel between the S&H capacitor and your capacitor, but you really notice it when you measure small capacitances as 30 pF is negligible for C >  500 pF.   
+
+Hence,  you should at first measure at no capacitor and then insert the measured constant  in your LabView Program (in the red box). In my case, it's 29.73. Now you're ready to measure! 
