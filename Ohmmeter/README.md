@@ -7,6 +7,7 @@ The circuit scheme is shown below
 <p align="center">
   <img src="scheme.png" width="700" heigth="700" title="circuit scheme">
 </p>
+
 ## Architecture Description
 
 This is an auto-ranging Ohmmeter. The details on the values of the components are described in the following sections. Here's a quick description of the architecture: three resistors connected to the three digital pins. The Ohmmeter automatically chooses the best range. 
