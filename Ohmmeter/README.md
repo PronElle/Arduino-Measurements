@@ -29,7 +29,8 @@ The basic idea of a microcontroller based Ohmmeter is well-known : a voltage div
 
 As a matter of fact, the purpose is both to respect the accuracy requirements and keep the circuit simple. For this reason, a preliminary analysis must deal with how many ranges are required at minimum. Clearly, the more the number of ranges increases, the more accurate   your Ohmmeter gets, but we want the simplest possible architecture to fit the requirements.
 
-![](https://latex.codecogs.com/svg.latex?V_x=V_{AL}\frac{N}{1024}=V_{AL}\frac{R_x}{R_x + R_{REF}}\iff R_x=R_{REF}\frac{N}{1024-N})
+![](https://latex.codecogs.com/svg.latex?V_x=V_{AL}\frac{N}{1024}=V_{AL}\frac{R_x}{R_x+R_{REF}}\iff)
+![](https://latex.codecogs.com/svg.latex?R_x=R_{REF}\frac{N}{1024-N})
 
 as for the resolution error, using the error propagation formulas
 
