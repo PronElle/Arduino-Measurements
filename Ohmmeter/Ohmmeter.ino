@@ -1,10 +1,9 @@
 const char E24[25] = {10, 11, 12, 13, 15, 16, 19, 20, 22, 24, 27, 30, 33, 36, 39,
                       43, 47, 51, 56, 62, 68, 75, 82, 91, 100};
 const float R_REF[3] = {470.0, 10e3, 220e3};
-
 const char Mult[3] = {' ', 'k', 'M'};
 
-#define NREF sizeof(R_REF)
+#define NREF 3  // number of ranges
 #define NM   40 // number of measures
 
 
@@ -37,8 +36,26 @@ void display_Rnom(float Rx){
       p = (int)e % NREF;
       q = (int)e / NREF;    
     }
-    Serial.println("R = " + String((int)E24[j]*pow(10, p - 1), 1) + " "
-    + String(Mult[q]) + " Ohm");
+    Serial.print("R = " + String((int)E24[j]*pow(10, p - 1), 1) + " "
+    + String(Mult[q]) + "Ohm");
+}
+
+
+
+
+/**
+ * averages measurements
+ * from a specific pin
+ * @param val to store result
+ * @param analog pin to read from
+ * @return None
+ */
+void avg_measure(float* vect_val, unsigned int pin){
+  for(int i = 0; i < NM ; ++i){
+    (*vect_val) += analogRead(pin);
+    delay(1);
+  }
+  (*vect_val) /= 40.0;
 }
 
 
@@ -49,8 +66,10 @@ void setup(){
 }
 
 
+
 void loop(){
-  float N[NREF], P[NREF], G[NREF], E[NREF];
+  
+  float N[NREF] = {0}, P[NREF] = {0}, G[NREF] = {0}, E[NREF] = {0};
   int bestP;
   float Rx, dRx, bestE = 1e3;
 
@@ -59,33 +78,20 @@ void loop(){
      digitalWrite(2+i , 1);
      delay(5);
 
-     N[i] = 0;
-     P[i] = 0;
-     G[i] = 0;
+      avg_measure(&G[i], A0);
+      avg_measure(&N[i], A1);
+      avg_measure(&P[i], A3 + i);
 
-    for (int j = 0; j < NM; ++j){
-      G[i] += analogRead(A0); 
-      delay(1);
-      N[i] += analogRead(A1); 
-      delay(1);
-      P[i] += analogRead(A3 + i); 
-      delay(1);
-    }
+      N[i] -= G[i];
+      P[i] -= G[i];
 
-    N[i] /= 40.0;
-    P[i] /= 40.0;
-    G[i] /= 40.0;
+      pinMode(2 + i, INPUT);
 
-    N[i] -= G[i];
-    P[i] -= G[i];
-
-    pinMode(2 + i, INPUT);
-
-    E[i] = P[i] / ((P[i] - N[i]) * N[i]);
-    if (E[i] < bestE && E[i] > 0){
-      bestE = E[i];
-      bestP = i;
-    }
+      E[i] = P[i] / ((P[i] - N[i]) * N[i]);
+      if (E[i] < bestE && E[i] > 0){
+        bestE = E[i];
+        bestP = i;
+      }
   }
 
     Rx = R_REF[bestP] * N[bestP] / (P[bestP] - N[bestP]);
@@ -96,9 +102,11 @@ void loop(){
     if(Rx < 20e6){
       display_Rnom(Rx);
       Serial.print("\t\t\t R = " + String(Rx));
-      Serial.print("+-" + String(dRx) + " Ohm" + String(bestE*100.0) + "%");
+      Serial.print("+-" + String(dRx) + " Ohm" + "(" + 
+                  String(bestE*100.0)  + "% )");
     } else
-      Serial.println("insert resistor ... ");
-      
+      Serial.print("insert resistor ... ");
+
+      Serial.println("");
       delay(500); 
 }
